@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog Layout</title>
+
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        
+        header {
+            background-color: lightgoldenrodyellow;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        
+        .blog-container {
+            display: flex;             
+            flex-wrap: wrap;            
+            gap: 20px;
+            padding: 20px;
+        }
+
+        
+        .blog-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;             
+            flex: 1 1 30%;              
+        }
+
+        
+        .blog-card h3 {
+            margin-top: 0;
+            color: navy;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card p {
+            line-height: 1.5;
+            color: #333;
+        }
+
+        
+        .blog-card button {
+            padding: 8px 15px;
+            background-color: navy;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .blog-card button:hover {
+            background-color: darkblue;
+        }
+
+        
+        @media (max-width: 768px) {
+            .blog-container {
+                flex-direction: column;   
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <h1>My Blog</h1>
+        <p>Latest Articles & Updates</p>
+    </header>
+
+    
+    <div class="blog-container">
+
+        <div class="blog-card">
+            <h3>Understanding HTML Basics</h3>
+            <p>
+                Learn the fundamentals of HTML and how to structure web pages
+                effectively using semantic elements.
+            </p>
+            <button>Read More</button>
+        </div>
+
+        <div class="blog-card">
+            <h3>CSS Box Model Explained</h3>
+            <p>
+                This article explains margin, border, padding, and content
+                with simple examples for beginners.
+            </p>
+            <button>Read More</button>
+        </div>
+
+        <div class="blog-card">
+            <h3>Getting Started with Flexbox</h3>
+            <p>
+                Flexbox helps you build modern layouts easily.
+                Learn how to align and distribute elements efficiently.
+            </p>
+            <button>Read More</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

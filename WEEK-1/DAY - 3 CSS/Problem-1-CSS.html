@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Course Enrollment Form</title>
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            padding: 20px;
+        }
+
+        
+        h1 {
+            color: navy;
+            text-align: center;
+        }
+
+        
+        p {
+            font-size: 14px;
+            color: gray;
+            text-align: center;
+        }
+
+        
+        .form-section {
+            background-color: white;
+            border: 2px solid lightgray;
+            margin: 20px auto;     
+            padding: 15px;        
+            width: 420px;
+        }
+
+        
+        form {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid whitesmoke;
+        }
+
+        fieldset {
+            border: 1px solid gray;
+            padding: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: black;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        input[type="number"],
+        input[list] {
+            width: 100%;
+            padding: 4px;
+            margin-top: 2px;
+        }
+
+        input[type="range"],
+        meter,
+        progress {
+            width: 100%;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 15px;
+            border: none;
+            background-color: navy;
+            color: white;
+            margin-right: 10px;
+        }
+
+        input[type="reset"] {
+            background-color: gray;
+        }
+
+        input[type="submit"] { cursor: pointer;
+            background-color: darkblue;
+        }
+
+        input[type="reset"] { cursor: pointer;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Course Enrollment Form</h1>
+<p>Please fill the form below to enroll in your preferred course.</p>
+<hr/>
+
+
+<div class="form-section">
+
+<form autocomplete="off">
+    <fieldset>
+        <legend>Enroll in a Course</legend>
+
+        <label>Email ID:</label><br/>
+        <input type="email" name="email" required>
+        <br/><br/>
+
+        <label>Select Course:</label><br/>
+        <input list="courses" name="course" required>
+        <datalist id="courses">
+            <option value="HTML">
+            <option value="CSS">
+            <option value="JavaScript">
+            <option value="Angular">
+            <option value="React">
+        </datalist>
+        <br/><br/>
+
+        <label>Your Skill Level:</label><br/>
+        <input type="range" min="1" max="5">
+        <br/><br/>
+
+        <label>Skill Meter:</label><br/>
+        <meter min="0" max="100" value="60"></meter>
+        <br/><br/>
+
+        <label>Enrollment Progress:</label><br/>
+        <progress value="70" max="100"></progress>
+        <br/><br/>
+
+        <label>Study Hours per Week:</label><br/>
+        <input type="number" min="1" max="40" required>
+        <br/><br/>
+
+        <input type="submit" value="Enroll">
+        <input type="reset" value="Clear">
+
+    </fieldset>
+</form>
+
+</div>
+
+</body>
+</html>

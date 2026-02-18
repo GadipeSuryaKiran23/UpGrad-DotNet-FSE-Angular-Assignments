@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        
+        .dashboard {
+            display: flex;         
+            min-height: 100vh;
+        }
+
+        
+        .sidebar {
+            background-color: #8e8d70;
+            color: rgb(30, 26, 30);
+            width: 220px;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(230, 244, 244);
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #8e9898;
+        }
+
+       
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            margin-bottom: 20px;
+        }
+
+        
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: rgb(235, 222, 222);
+            border: 1px solid #473f3f;
+            padding: 20px;        
+            margin: 5px;         
+            flex: 1;
+        }
+
+       
+
+        
+        @media (max-width: 768px) {
+
+            
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .sidebar ul {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .sidebar ul li {
+                margin-bottom: 0;
+            }
+
+            
+            .cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+       
+        <div class="sidebar">
+            <h2>Admin</h2>
+            <ul>
+                <li>Dashboard</li>
+                <li>Users</li>
+                <li>Reports</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+
+       
+        <div class="main-content">
+            <h1>Dashboard Overview</h1>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Users</h3>
+                    <p>1,250 Active Users</p>
+                </div>
+
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p>₹75,000 This Month</p>
+                </div>
+
+                <div class="card">
+                    <h3>Performance</h3>
+                    <p>Server Running Smoothly</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
