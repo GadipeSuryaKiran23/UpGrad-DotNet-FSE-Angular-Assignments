@@ -1,0 +1,83 @@
+body {
+     font-family: Arial, sans-serif;
+     background-color: white;
+     padding: 20px;
+        }
+
+        
+    h1 {
+         color: navy;
+         text-align: center;
+     }
+
+        
+     p {
+         font-size: 14px;
+        color: gray;
+        text-align: center;
+    }
+
+        
+    .form-section {
+            background-color: white;
+            border: 2px solid lightgray;
+            margin: 20px auto;     
+            padding: 15px;        
+            width: 420px;
+        }
+
+        
+    form {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid whitesmoke;
+        }
+
+    fieldset {
+            border: 1px solid gray;
+            padding: 15px;
+        }
+
+    legend {
+            font-weight: bold;
+            color: black;
+        }
+
+    label {
+            font-weight: bold;
+        }
+
+    input[type="email"],
+    input[type="number"],
+    input[list] {
+            width: 100%;
+            padding: 4px;
+            margin-top: 2px;
+        }
+
+    input[type="range"],
+    meter,
+    progress {
+            width: 100%;
+        }
+
+    input[type="submit"],
+    input[type="reset"] {
+            padding: 10px 15px;
+            border: none;
+            background-color: navy;
+            color: white;
+            margin-right: 10px;
+        }
+
+    input[type="reset"] {
+            background-color: gray;
+        }
+
+    input[type="submit"] { cursor: pointer;
+            background-color: darkblue;
+        }
+
+    input[type="reset"] { cursor: pointer;
+            background-color: black;
+        }
