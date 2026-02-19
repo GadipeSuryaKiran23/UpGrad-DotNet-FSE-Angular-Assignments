@@ -1,0 +1,150 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Friendly Responsive Dashboard</title>
+
+    <style>
+       
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+           
+            font-size: clamp(14px, 1.2vw, 18px);
+
+            background-color: #f2f2f2;
+        }
+
+        
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+       
+        .sidebar {
+            background-color: #8e8d70;
+            color: #1e1a1e;
+
+            
+            width: min(25%, 260px);
+
+            padding: 1.5rem;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 0.8em;
+            margin-bottom: 0.8em;
+            background-color: #e6f4f4;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #cfdede;
+        }
+
+       
+        .main-content {
+            flex: 1;
+            padding: 2vw;
+            
+        }
+
+        .main-content h1 {
+            margin-bottom: 1.5em;
+            cursor: pointer;
+        }
+
+        
+        .cards {
+            display: flex;
+            gap: 2vw;
+            flex-wrap: wrap;  
+             
+        }
+
+        .card {
+            background-color: #ebdede;
+            border: 1px solid #473f3f;
+            padding: 1.5em;
+            border-radius: 6px;
+            cursor: pointer;
+            flex: 1 1 min(280px, 100%);
+        }
+
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+   
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Users</li>
+            <li>Reports</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+
+    
+    <div class="main-content">
+        <h1>Dashboard Overview</h1>
+        
+
+        <div class="cards">
+            <div class="card">
+                <h3>Users</h3>
+                <p>1,250 Active Users</p>
+            </div>
+
+            <div class="card">
+                <h3>Revenue</h3>
+                <p>₹75,000 This Month</p>
+            </div>
+
+            <div class="card">
+                <h3>Performance</h3>
+                <p>It is Running Smoothly</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>                      

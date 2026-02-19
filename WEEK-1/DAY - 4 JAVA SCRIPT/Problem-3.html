@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+<body>
+    <h1> Simple Discount Calculator</h1>
+
+
+<script>
+    let amount = 10000;   
+
+    let discount;
+    let discountAmount;
+    let finalAmount;
+
+    
+    if (amount >= 5000) {
+        discount = 20;
+    }
+    else if (amount >= 3000) {
+        discount = 10;
+    }
+    else {
+        discount = 0;
+    }
+
+    
+    discountAmount = (amount * discount) / 100;
+    finalAmount = amount - discountAmount;
+
+    
+    console.log("Purchase Amount: ₹" + amount);
+    console.log("Discount Applied: " + discount + "%");
+    console.log("Discount Amount: ₹" + discountAmount);
+    console.log("Final Payable Amount: ₹" + finalAmount);
+</script>
+
+</body>
+</html>
