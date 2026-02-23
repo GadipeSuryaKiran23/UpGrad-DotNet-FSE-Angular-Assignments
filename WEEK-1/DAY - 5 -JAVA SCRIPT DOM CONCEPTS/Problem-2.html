@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info Display</title>
+    <style>
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        /* Container Box */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* Button Hover */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Info Box */
+        .info-box {
+            background-color: #f9f9f9;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+        }
+
+        /* Each Info Paragraph */
+        .info-box p {
+            font-size: 16px;
+            color: #333;
+            margin: 8px 0;
+            text-align: left;
+        }
+
+        /* Label Styling */
+        .info-box span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Heading -->
+        <h1>User Info Display</h1>
+
+        <!-- Button to trigger function -->
+        <button onclick="displayUserInfo(user)">Show User Info</button>
+
+        <!-- Info Box to display user details -->
+        <div class="info-box" id="infoBox">
+
+            <!-- Separate <p> elements for each property -->
+            <p id="userName"></p>
+            <p id="userAge"></p>
+            <p id="userCity"></p>
+            <p id="userQualification"></p>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // JavaScript Object with user properties
+        var user = {
+            name  : "Gadipe Surya Kiran",
+            age   : 22,
+            city  : "Karimnagar",
+            qualification : "B.Tech"
+
+        };
+
+        // Function accepts object as parameter
+        // No global variables used inside function
+        function displayUserInfo(userObj) {
+
+            // Access properties using dot notation
+            var userName = userObj.name;
+            var userAge  = userObj.age;
+            var userCity = userObj.city;
+            var userQualification = userObj.qualification;
+
+            // Update DOM elements dynamically using getElementById
+            document.getElementById("userName").innerHTML = "<span>Name :</span> " + userName;
+
+            document.getElementById("userAge").innerHTML  = "<span>Age  :</span> " + userAge;
+
+            document.getElementById("userCity").innerHTM  = "<span>City :</span> " + userCity;
+
+            document.getElementById("userQualification").innerHTML = "<span>Qualification :</span> " + userQualification;
+
+
+            // Show the info box
+            document.getElementById("infoBox").style.display = "block";
+
+        }
+
+    </script>
+
+</body>
+</html>

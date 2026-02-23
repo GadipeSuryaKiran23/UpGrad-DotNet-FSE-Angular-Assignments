@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Manager</title>
+    <style>
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        /* Container Box */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Profile Card */
+        #profileCard {
+            background-color: #f9f9f9;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            display: none;
+        }
+
+        /* Profile Card Heading */
+        #profileCard h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Profile Info Paragraphs */
+        #profileCard p {
+            font-size: 16px;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        /* Label Styling */
+        #profileCard span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* Grade Badge */
+        #gradeBadge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            color: white !important;
+            margin-top: 5px;
+        }
+
+        /* Input Box */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Common Button */
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Show Profile Button */
+        #showBtn {
+            background-color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        #showBtn:hover {
+            background-color: #45a049;
+        }
+
+        /* Update Marks Button */
+        #updateBtn {
+            background-color: #2196F3;
+        }
+
+        #updateBtn:hover {
+            background-color: #1976D2;
+        }
+
+        /* Section Label */
+        .section-label {
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Heading -->
+        <h1>Student Profile Manager</h1>
+
+        <!-- Show Profile Button -->
+        <button id="showBtn">Show Student Profile</button>
+
+        <!-- Profile Card -->
+        <div id="profileCard">
+            <h2>🎓 Student Profile</h2>
+            <p><span>Name    :</span> <span id="displayName"></span></p>
+            <p><span>Roll No :</span> <span id="displayRollNo"></span></p>
+            <p><span>Marks   :</span> <span id="displayMarks"></span></p>
+            <p><span>Grade   :</span> <span id="gradeBadge"></span></p>
+        </div>
+
+        <!-- Update Marks Section -->
+        <span class="section-label">Update Student Marks:</span>
+        <input type="number" id="newMarksInput" placeholder="Enter new marks (0-100)" min="0" max="100">
+
+        <div class="btn-group">
+            <button id="updateBtn">Update Marks</button>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Global Student Object
+        var student = {
+            name   : "Gadipe Surya Kiran",
+            rollNo : "7313",
+            marks  : 90
+        };
+
+        // Function to get grade based on marks
+        function getGrade(marks) {
+            if      (marks >= 90) { return { grade: "A+", color: "#1565C0" }; } // Dark Blue
+            else if (marks >= 80) { return { grade: "A",  color: "#6A1B9A" }; } // Purple
+            else if (marks >= 70) { return { grade: "B",  color: "#0277BD" }; } // Blue
+            else if (marks >= 60) { return { grade: "C",  color: "#E65100" }; } // Orange
+            else if (marks >= 50) { return { grade: "D",  color: "#BF360C" }; } // Deep Orange
+            else                  { return { grade: "F",  color: "#B71C1C" }; } // Dark Red
+        }
+
+        // Function 1 — accepts student object as parameter
+        function updateStudentProfile(studentObj) {
+
+            // Access object properties using dot notation
+            var name   = studentObj.name;
+            var rollNo = studentObj.rollNo;
+            var marks  = studentObj.marks;
+
+            // Get grade for current marks
+            var gradeInfo = getGrade(marks);
+
+            // Update DOM without page refresh
+            document.getElementById("displayName").innerHTML   = name;
+            document.getElementById("displayRollNo").innerHTML = rollNo;
+            document.getElementById("displayMarks").innerHTML  = marks + " / 100";
+
+            // Update grade badge with clear visible color
+            document.getElementById("gradeBadge").innerHTML              = gradeInfo.grade;
+            document.getElementById("gradeBadge").style.backgroundColor  = gradeInfo.color;
+            document.getElementById("gradeBadge").style.color            = "white";
+            document.getElementById("gradeBadge").style.padding          = "4px 16px";
+            document.getElementById("gradeBadge").style.borderRadius     = "20px";
+
+            // Show profile card
+            document.getElementById("profileCard").style.display = "block";
+
+        }
+
+        // Function 2 — updates marks and refreshes display
+        function updateMarks(newMarks) {
+
+            // Validate marks range
+            if (newMarks < 0 || newMarks > 100 || isNaN(newMarks)) {
+                alert("Please enter valid marks between 0 and 100!");
+                return;
+            }
+
+            // Update global student object marks
+            student.marks = newMarks;
+
+            // Refresh display with updated object
+            updateStudentProfile(student);
+
+            // Clear input
+            document.getElementById("newMarksInput").value = "";
+
+        }
+
+        // Event Listeners
+        document.getElementById("showBtn").addEventListener("click", function() {
+            updateStudentProfile(student);
+        });
+
+        document.getElementById("updateBtn").addEventListener("click", function() {
+            var newMarks = Number(document.getElementById("newMarksInput").value);
+            updateMarks(newMarks);
+        });
+
+    </script>
+
+</body>
+</html>

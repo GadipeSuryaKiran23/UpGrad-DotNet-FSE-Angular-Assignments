@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        /* Container Box */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Counter Display */
+        #counterValue {
+            font-size: 60px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* Common Button Style */
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Increment Button */
+        #incrementBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #incrementBtn:hover {
+            background-color: #45a049;
+        }
+
+        /* Reset Button */
+        #resetBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #resetBtn:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Heading -->
+        <h1>Counter App</h1>
+
+        <!-- Counter Display -->
+        <p id="counterValue">0</p>
+
+        <!-- Button Group -->
+        <div class="btn-group">
+
+            <!-- Increment Button — No inline JS -->
+            <button id="incrementBtn">Increment</button>
+
+            <!-- Reset Button — No inline JS -->
+            <button id="resetBtn">Reset</button>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Global variable — maintained outside function
+        var counter = 0;
+
+        // Function accepts step as parameter
+        function incrementCounter(step) {
+
+            // Update global counter using step parameter
+            counter = counter + step;
+
+            // Update DOM inside function only
+            document.getElementById("counterValue").innerHTML = counter;
+
+            // Change color based on value
+            document.getElementById("counterValue").style.color = "#4CAF50";
+
+        }
+
+        // Reset Function
+        function resetCounter() {
+
+            // Reset global variable to 0
+            counter = 0;
+
+            // Update DOM inside function only
+            document.getElementById("counterValue").innerHTML = counter;
+
+            // Change color to red on reset
+            document.getElementById("counterValue").style.color = "#f44336";
+
+        }
+
+        // Event Listeners — No inline JS in HTML
+        document.getElementById("incrementBtn").addEventListener("click", function() {
+            incrementCounter(1);
+        });
+
+        document.getElementById("resetBtn").addEventListener("click", function() {
+            resetCounter();
+        });
+
+    </script>
+
+</body>
+</html>

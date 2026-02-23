@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Based Weather Logger</title>
+</head>
+<body>
+
+    <h2>Location Based Weather Logger</h2>
+    <hr>
+
+   
+    <input type="button" value="Get My Location" onclick="getLocation()" />
+
+    <hr>
+
+    
+    <h3>Current Location</h3>
+    <p id="currentLocation"></p>
+
+    <hr>
+
+    
+    <h4>Last 5 Location History</h4>
+    <ul id="historyList"></ul>
+
+    <script>
+
+        
+        window.onload = function () {
+            displayHistory();
+        };
+
+       
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(
+                showPosition,
+                showError,
+                {
+                    timeout: 5000
+                }
+            );
+        }
+
+        
+        function showPosition(position) {
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            document.getElementById("currentLocation").innerHTML =
+                "Latitude : " + lat + "<br>Longitude : " + lon;
+
+            saveLocation(lat, lon);
+            displayHistory();
+        }
+
+        
+        function showError(error) {
+            let msg = "";
+
+            if (error.code == 1) {
+                msg = "Permission denied by user.";
+            }
+            else if (error.code == 2) {
+                msg = "Location unavailable.";
+            }
+            else if (error.code == 3) {
+                msg = "Location request timed out.";
+            }
+
+            document.getElementById("currentLocation").innerText = msg;
+        }
+
+        
+        function saveLocation(lat, lon) {
+
+            let data = localStorage.getItem("locationHistory");
+            let locations = [];
+
+            if (data != null) {
+                locations = JSON.parse(data);
+            }
+
+            let entry = {
+                latitude: lat,
+                longitude: lon,
+                time: new Date().toLocaleString()
+            };
+
+            locations.push(entry);
+
+            if (locations.length > 5) {
+                locations.shift();   
+            }
+
+            localStorage.setItem("locationHistory", JSON.stringify(locations));
+        }
+
+       
+        function displayHistory() {
+
+            let list = document.getElementById("historyList");
+            list.innerHTML = "";
+
+            let data = localStorage.getItem("locationHistory");
+
+            if (data == null) {
+                return;
+            }
+
+            let locations = JSON.parse(data);
+
+            for (let i = 0; i < locations.length; i++) {
+                let li = document.createElement("li");
+                li.innerText =
+                    locations[i].time +
+                    " | Lat: " + locations[i].latitude + ", Lon: " + locations[i].longitude;
+                list.appendChild(li);
+            }
+        }
+
+    </script>
+
+</body>
+</html>

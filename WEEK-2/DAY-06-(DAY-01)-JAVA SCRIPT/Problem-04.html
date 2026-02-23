@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management using IndexedDB</title>
+</head>
+
+<body>
+
+    <h2>Student Management System using IndexedDB</h2>
+    <hr>
+
+    Student Name :
+    <input type="text" id="name">
+
+    Student Age :
+    <input type="number" id="age">
+
+    <br><br>
+
+    <input type="button" value="Open Database" onclick="openDB()" />
+    <input type="button" value="Add Student" onclick="addStudent()" />
+    <input type="button" value="View Students" onclick="viewStudents()" />
+    <input type="button" value="Update Student" onclick="updateStudent()" />
+    <input type="button" value="Delete Student" onclick="deleteStudent()" />
+
+    <hr>
+
+    <h3>Student Records</h3>
+    <ul id="output"></ul>
+
+    <script>
+
+        let db;
+
+        
+        // OPEN DATABASE
+        
+        function openDB() {
+
+            let request = indexedDB.open("StudentDB", 1);
+
+            request.onupgradeneeded = function (e) {
+
+                db = e.target.result;
+
+                let store = db.createObjectStore("students", {
+                    keyPath: "id",
+                    autoIncrement: true
+                });
+
+                store.createIndex("name", "name", { unique: false });
+            };
+
+            request.onsuccess = function (e) {
+                db = e.target.result;
+                alert("Database opened successfully");
+            };
+
+            request.onerror = function () {
+                alert("Error opening database");
+            };
+        }
+
+        
+        // CREATE (INSERT)
+        
+        function addStudent() {
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+
+            let tx = db.transaction("students", "readwrite");
+            let store = tx.objectStore("students");
+
+            store.add({ name: name, age: age });
+
+            tx.oncomplete = function () {
+                alert("Student added successfully");
+                viewStudents();
+            };
+        }
+
+        
+        // READ (DISPLAY)
+        
+        function viewStudents() {
+
+            let list = document.getElementById("output");
+            list.innerHTML = "";
+
+            let tx = db.transaction("students", "readonly");
+            let store = tx.objectStore("students");
+
+            store.openCursor().onsuccess = function (e) {
+
+                let cursor = e.target.result;
+
+                if (cursor) {
+
+                    let li = document.createElement("li");
+                    li.innerText =
+                        "ID: " + cursor.value.id +
+                        " | Name: " + cursor.value.name + 
+                        " | Age: " + cursor.value.age;
+
+                    list.appendChild(li);
+                    cursor.continue();
+                }
+            };
+        }
+
+        
+        // UPDATE
+        
+        function updateStudent() {
+
+            let id = prompt("Enter Student ID to update:");
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+
+            let tx = db.transaction("students", "readwrite");
+            let store = tx.objectStore("students");
+
+            let request = store.get(Number(id));
+
+            request.onsuccess = function () {
+
+                let data = request.result;
+
+                if (data) {
+                    data.name = name;
+                    data.age = age;
+
+                    store.put(data);
+                    alert("Student updated successfully");
+                    viewStudents();
+                } else {
+                    alert("Student record not found");
+                }
+            };
+        }
+
+        
+        // DELETE
+        
+        function deleteStudent() {
+
+            let id = prompt("Enter Student ID to delete:");
+
+            let tx = db.transaction("students", "readwrite");
+            let store = tx.objectStore("students");
+
+            store.delete(Number(id));
+
+            tx.oncomplete = function () {
+                alert("Student deleted successfully");
+                viewStudents();
+            };
+        }
+
+    </script>
+
+</body>
+</html>

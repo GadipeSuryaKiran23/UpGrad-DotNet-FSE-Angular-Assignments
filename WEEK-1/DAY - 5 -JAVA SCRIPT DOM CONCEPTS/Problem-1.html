@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Generator</title>
+    <style>
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        /* Container Box */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input Box */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Input Focus */
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Button Hover */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Greeting Message */
+        #greetingMessage {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #87e38a;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        /* Error Message */
+        .error {
+            color: red !important;
+            font-size: 14px !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Heading -->
+        <h1>Greeting Generator</h1>
+
+        <!-- Input Box to enter name -->
+        <input 
+            type="text" 
+            id="nameInput" 
+            placeholder="Enter your name">
+
+        <!-- Button to generate greeting -->
+        <button onclick="generateGreeting()">Generate Greeting</button>
+
+        <!-- Paragraph to display greeting message -->
+        <p id="greetingMessage"></p>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Function using function keyword (not arrow function)
+        function generateGreeting() {
+
+            // Step 1 - Get value from input box using getElementById
+            var name = document.getElementById("nameInput").value;
+
+            // Step 2 - Check if name is empty
+            if (name === "") {
+                // Show error if name is empty
+                document.getElementById("greetingMessage").innerHTML 
+                = "Please enter your name!";
+                document.getElementById("greetingMessage").className 
+                = "error";
+                return;
+            }
+
+            // Step 3 - Greeting message variable declared 
+            // inside function = local scope
+            var greetingMessage = "Hello, " + name 
+            + "! Welcome to our website.";
+
+            // Step 4 - Display greeting message inside 
+            // <p> element using getElementById
+            document.getElementById("greetingMessage").innerHTML 
+            = greetingMessage;
+
+            // Step 5 - Remove error class if present
+            document.getElementById("greetingMessage").className = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
