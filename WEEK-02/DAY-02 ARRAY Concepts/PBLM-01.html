@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Analyser</title>
+
+    <style>
+        #output {
+            background-color: #f2f2f2;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Marks Analyser</h1>
+    <hr/>
+
+    <button onclick="button1Click()">Analyse Marks</button>
+
+    <div id="output"></div>
+
+    <hr/>
+    <footer>
+        <mark style="background-color: lightgreen;">
+            Note: Output is displayed on the webpage.
+        </mark>
+    </footer>
+
+    <script>
+        /* ===============================
+           Arrow Function (Modular Logic)
+           =============================== */
+        const analyseMarks = (marksArray) => {
+
+            // map() used meaningfully (processing data)
+            const processedMarks = marksArray.map(mark => Number(mark));
+
+            // reduce() to calculate total
+            const totalMarks = processedMarks.reduce(
+                (sum, mark) => sum + mark, 0
+            );
+
+            // average calculation
+            const averageMarks = totalMarks / processedMarks.length;
+
+            // pass / fail logic
+            let result = averageMarks >= 50 ? "PASS" : "FAIL";
+
+            // display output using template literals
+            document.getElementById("output").innerHTML = `<h3>Result</h3>
+                <p><b>Marks:</b> ${processedMarks.join(", ")}</p>
+                <p><b>Total Marks:</b> ${totalMarks}</p>
+                <p><b>Average Marks:</b> ${averageMarks.toFixed(2)}</p>
+                <p><b>Result:</b> ${result}</p>`;
+        };
+
+        /* ===============================
+           Button Click Handler
+           =============================== */
+        function button1Click() {
+            const studentMarks = [5,1,2,3,4,6];
+            analyseMarks(studentMarks);
+        }
+    </script>
+
+</body>
+</html>

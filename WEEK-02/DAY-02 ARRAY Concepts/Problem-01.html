@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Analyser</title>
+
+    <style>
+        #output {
+            background-color: #f2f2f2;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Marks Analyser</h1>
+    <hr/>
+
+    <button onclick="button1Click()">Analyse Marks</button>
+
+    <!-- Output will appear here -->
+    <div id="output"></div>
+
+    <hr/>
+    <footer>
+        <mark style="background-color: lightgreen;">
+            Note: Output is displayed on the webpage.
+        </mark>
+    </footer>
+
+    <script>
+
+        // Arrow Function
+        const analyseMarks = (marksArray) => {
+
+            const processedMarks = marksArray.map(mark => mark);
+
+            // Total marks
+            const totalMarks = processedMarks.reduce((sum, mark) => sum + mark, 0);
+
+            // Average marks
+            const averageMarks = totalMarks / processedMarks.length;
+
+            // Pass or Fail logic
+            let result;
+            if (averageMarks >= 50)
+                result = "PASS";
+            else
+                result = "FAIL";
+
+            // Display output on webpage
+            document.getElementById("output").innerHTML = `
+                <h3>Result</h3>
+                <p><b>Marks:</b> ${processedMarks}</p>
+                <p><b>Total Marks:</b> ${totalMarks}</p>
+                <p><b>Average Marks:</b> ${averageMarks.toFixed(2)}</p>
+                <p><b>Result:</b> ${result}</p>
+            `;
+        };
+
+        function button1Click() {
+            const studentMarks = [5, 4, 3, 2, 1];
+            analyseMarks(studentMarks);
+        }
+
+    </script>
+
+</body>
+</html>

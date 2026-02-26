@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager (LEVEL-2)</title>
+
+    <style>
+        #output {
+            border: 2px solid #2196F3;
+            padding: 15px;
+            width: 400px;
+            font-family: Arial;
+            background-color: #F5FAFF;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Task Manager with Async Storage</h2>
+    <hr/>
+
+    <button id="btnCallback">Run Callback Version</button>
+    <button id="btnPromise">Run Promise Version</button>
+    <button id="btnAsync">Run Async/Await Version</button>
+
+    <div id="output"></div>
+
+    <script type="module">
+        import {
+            runCallbackVersion,
+            runPromiseVersion,
+            runAsyncAwaitVersion
+        } from "./taskManager.js";
+
+        document.getElementById("btnCallback").onclick = runCallbackVersion;
+        document.getElementById("btnPromise").onclick = runPromiseVersion;
+        document.getElementById("btnAsync").onclick = runAsyncAwaitVersion;
+    </script>
+
+</body>
+</html>

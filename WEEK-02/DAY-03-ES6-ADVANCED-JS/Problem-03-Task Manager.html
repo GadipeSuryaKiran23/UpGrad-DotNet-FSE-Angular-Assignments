@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager </title>
+
+    <style>
+        #output {
+            border: 2px solid #2196F3;
+            padding: 15px;
+            width: 450px;
+            font-family: Arial, sans-serif;
+            background-color: #F5FAFF;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Task Manager with Async Storage (Single File)</h3>
+<hr/>
+
+<button onclick="runCallbackVersion()">Callback Version</button>
+<button onclick="runPromiseVersion()">Promise Version</button>
+<button onclick="runAsyncAwaitVersion()">Async/Await Version</button>
+
+<div id="output"></div>
+
+<script>
+    // Task Storage
+    let tasks = [];
+    const outputDiv = document.getElementById("output");
+
+    // Callback
+    const addTaskCallback = (task, callback) => {
+        setTimeout(() => {
+            tasks.push(task);
+            callback();
+        }, 1000);
+    };
+
+    const deleteTaskCallback = (task, callback) => {
+        setTimeout(() => {
+            tasks = tasks.filter(t => t !== task);
+            callback();
+        }, 1000);
+    };
+
+    const listTasksCallback = () => {
+        outputDiv.innerHTML = ` <h4>Tasks (Callback)</h4>
+        <ul> ${tasks.map(t => `<li>${t}</li>`).join("")}  </ul>`;
+    };
+
+    function runCallbackVersion() {
+        tasks = [];
+        outputDiv.innerHTML = "Running Callback Version...";
+
+        addTaskCallback("Learn JavaScript", () => {
+            addTaskCallback("Learn Async JS", () => {
+                deleteTaskCallback("Learn JavaScript", () => {
+                    listTasksCallback();
+                });
+            });
+        });
+    }
+    // Promise
+    const addTaskPromise = (task) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                tasks.push(task);
+                resolve();
+            }, 1000);
+        });
+    };
+
+    const deleteTaskPromise = (task) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                tasks = tasks.filter(t => t !== task);
+                resolve();
+            }, 1000);
+        });
+    };
+
+    const listTasksPromise = () => {
+        outputDiv.innerHTML = ` <h4>Tasks (Promise)</h4>
+            <ul> ${tasks.map(t => `<li>${t}</li>`).join("")} </ul> `;
+    };
+
+    function runPromiseVersion() {
+        tasks = [];
+        outputDiv.innerHTML = "Running Promise Version.";
+
+        addTaskPromise("Learn JavaScript")
+            .then(() => addTaskPromise("Learn Async JS"))
+            .then(() => deleteTaskPromise("Learn JavaScript"))
+            .then(() => listTasksPromise());
+    }
+    // Async and Await
+
+    const addTaskAsync = (task) =>
+        new Promise(resolve => {
+            setTimeout(() => {
+                tasks.push(task);
+                resolve();
+            }, 1000);
+        });
+
+    const deleteTaskAsync = (task) =>
+        new Promise(resolve => {
+            setTimeout(() => {
+                tasks = tasks.filter(t => t !== task);
+                resolve();
+            }, 1000);
+        });
+
+    const listTasksAsync = () => {
+        outputDiv.innerHTML = ` <h4>Tasks (Async/Await)</h4>
+            <ul> ${tasks.map(t => `<li>${t}</li>`).join("")} </ul> `;
+    };
+
+    async function runAsyncAwaitVersion() {
+        tasks = [];
+        outputDiv.innerHTML = "Running Async/Await Version.";
+
+        await addTaskAsync("Learn JavaScript");
+        await addTaskAsync("Learn HTML");
+        await addTaskAsync("Learn Async JS");
+        await deleteTaskAsync("Learn JavaScript");
+        listTasksAsync();
+    }
+</script>
+
+</body>
+</html>

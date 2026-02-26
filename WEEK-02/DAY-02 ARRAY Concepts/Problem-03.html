@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Job Filter</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Employee Details</h1>
+    <hr/>
+
+    
+    <label>Select Job:</label>
+    <select id="jobSelect">
+        <option value="All">All Employees</option>
+        <option value="Manager">Manager</option>
+        <option value="Salesman">Salesman</option>
+        <option value="Developer">Developer</option>
+    </select>
+
+    <button onclick="showEmployees()">Show Emps</button>
+
+    <hr/>
+
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Job</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+          
+        </tbody>
+    </table>
+
+    <footer>
+        <mark style="background-color: lightgreen;">
+            Note: Employees are displayed based on selected job.
+        </mark>
+    </footer>
+
+    <script>
+
+        
+        const employees = [
+            { id: 101, name: "Surya Kiran", job: "Manager", salary: 50000 },
+            { id: 102, name: "Bhanu", job: "Salesman", salary: 30000 },
+            { id: 103, name: "Sai", job: "Developer", salary: 45000 },
+            { id: 104, name: "Ramya", job: "Manager", salary: 55000 },
+            { id: 105, name: "Mithra", job: "Salesman", salary: 32000 },
+            { id: 106, name: "Sree", job: "Developer", salary: 35000 },
+            { id: 107, name: "Priya", job: "Manager", salary: 75000 },
+            { id: 108, name: "Mithun", job: "Salesman", salary: 22000 }
+        ];
+
+        function showEmployees()
+        {
+            const selectedJob = document.getElementById("jobSelect").value;
+            const tableBody = document.getElementById("tableBody");
+
+            
+            tableBody.innerHTML = "";
+
+            
+            let resultArray = [];
+
+            if (selectedJob === "All"){
+                 resultArray = employees;
+                }
+            else
+                {
+                     for (let emp of employees)
+                        {
+                            if (emp.job === selectedJob)
+                                {
+                                    resultArray.push(emp);
+                                }
+                        }
+                }
+
+            
+            for (let emp of resultArray)
+            {
+                const row = `
+                    <tr>
+                        <td>${emp.id}</td>
+                        <td>${emp.name}</td>
+                        <td>${emp.job}</td>
+                        <td>${emp.salary}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            }
+        }
+
+    </script>
+
+</body>
+</html>

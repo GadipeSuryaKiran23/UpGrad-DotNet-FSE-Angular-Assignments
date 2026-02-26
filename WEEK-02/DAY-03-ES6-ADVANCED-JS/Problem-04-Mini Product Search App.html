@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Product Search App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #app {
+            width: 400px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px;
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+        }
+
+        .no-results {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Mini Product Search App</h3>
+<hr/>
+
+<div id="app">
+    <input type="text" id="searchInput" placeholder="Search products." />
+    <ul id="productList"></ul>
+</div>
+
+<script>
+    // APPLICATION STATE
+    const products = [
+        "Laptop",
+        "Mobile Phone",
+        "Headphones",
+        "Keyboard",
+        "Mouse",
+        "Monitor",
+        "Smart Watch",
+        "Camera"
+    ];
+
+    let filteredProducts = [...products]; // state
+
+    // DOM REFERENCES
+    const app = document.getElementById("app");
+    const searchInput = document.getElementById("searchInput");
+    const productList = document.getElementById("productList");
+
+    // RENDER FUNCTION
+    const renderProducts = (items) => {
+        productList.innerHTML = "";
+
+        if (items.length === 0) {
+            productList.innerHTML = `<li class="no-results">No Results Found</li>`;
+            return;
+        }
+
+        items.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = product;
+            productList.appendChild(li);
+        });
+    };
+
+    // Initial render
+    renderProducts(filteredProducts);
+
+    // EVENT DELEGATION INPUT HANDLING
+    app.addEventListener("input", (event) => {
+
+        if (event.target.id !== "searchInput") return;
+
+        const searchText = event.target.value.toLowerCase();
+
+        filteredProducts = products.filter(product =>
+            product.toLowerCase().includes(searchText)
+        );
+
+        renderProducts(filteredProducts);
+    });
+</script>
+
+</body>
+</html>

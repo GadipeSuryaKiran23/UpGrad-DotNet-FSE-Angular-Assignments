@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Data Fetcher</title>
+
+    <style>
+        #output {
+            border: 2px solid #4CAF50;
+            padding: 15px;
+            margin-top: 15px;
+            width: 400px;
+            font-family: Arial, sans-serif;
+            background-color: #F6FFF6;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Weather Data Fetcher</h2>
+    <hr/>
+    Enter Place:
+    <input type="text" id="place" placeholder="Enter city name" />
+    <button onclick="getWeatherUsingAsync()">Get Weather (Async/Await)</button>
+
+    <div id="output"></div>
+
+    <hr/>
+    <footer>
+        <mark>Note: Weather data fetched asynchronously from public API.</mark>
+    </footer>
+
+    <script>
+        const outputDiv = document.getElementById("output");
+
+        const WEATHER_URL =
+            "https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current_weather=true";
+
+        //using async & await //
+        const getWeatherUsingAsync = async () => {
+
+            try {
+                outputDiv.innerHTML = "Fetching weather using async/await";
+
+                const response = await fetch(WEATHER_URL);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch weather data");
+                }
+                const data = await response.json();
+                const weather = data.current_weather;
+
+                outputDiv.innerHTML = ` <h3>Weather Report (Async/Await)</h3>
+                    <p><b>Temperature:</b> ${weather.temperature} °C</p>
+                    <p><b>Wind Speed:</b> ${weather.windspeed} km/h</p>
+                    <p><b>Weather Code:</b> ${weather.weathercode}</p> `;
+            }
+            catch (error) {
+                outputDiv.innerHTML = `<span style="color:red;">Error: ${error.message} </span>`;
+            }
+        };
+    </script>
+
+</body>
+</html>
