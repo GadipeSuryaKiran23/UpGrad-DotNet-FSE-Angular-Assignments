@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OOP Polymorphism - Payment System</title>
+
+    <style>
+        .box {
+            border: 2px solid #4CAF50;
+            padding: 12px;
+            margin: 10px 0;
+            width: 420px;
+            font-family: Arial, sans-serif;
+            background-color: #F6FFF6;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Payment System (Polymorphism & Method Overriding)</h3>
+<hr/>
+
+<button onclick="processPayments()">Process Payments</button>
+
+<div id="output"></div>
+
+<script>
+    
+    // BASE CLASS
+    
+    class Payment {
+        pay(amount) {
+            return `Processing payment of ₹${amount}`;
+        }
+    }
+
+    
+    // SUBCLASS: Credit Card
+   
+    class CreditCardPayment extends Payment {
+        pay(amount) {
+            return `Paid ₹${amount} using Credit Card`;
+        }
+    }
+
+    
+    // SUBCLASS: UPI
+    
+    class UPIPayment extends Payment {
+        pay(amount) {
+            return `Paid ₹${amount} using UPI`;
+        }
+    }
+
+    
+    // SUBCLASS: Cash
+  
+    class CashPayment extends Payment {
+        pay(amount) {
+            return `Paid ₹${amount} using Cash`;
+        }
+    }
+
+    
+    // FUNCTION TO DEMONSTRATE POLYMORPHISM
+   
+    function processPayments() {
+
+        const outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = "";
+
+        // Creating objects of different payment types
+        const payments = [
+            new CreditCardPayment(),
+            new UPIPayment(),
+            new CashPayment()
+        ];
+
+        // Calling same method on different objects
+        payments.forEach(payment => {
+            outputDiv.innerHTML += `
+                <div class="box">
+                    ${payment.pay(500)}
+                </div>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>

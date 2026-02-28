@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OOPs Inheritance - Vehicle System</title>
+
+    <style>
+        .box {
+            border: 2px solid #2196F3;
+            padding: 12px;
+            width: 400px;
+            font-family: Arial, sans-serif;
+            background-color: #F5FAFF;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Vehicle Management System (Inheritance)</h3>
+<hr/>
+
+<button onclick="showVehicleDetails()">Show Vehicle Details</button>
+
+<div id="output"></div>
+
+<script>
+    
+    // Base class
+   
+    class Vehicle {
+
+        constructor(brand, speed) {
+            this.brand = brand;
+            this.speed = speed;
+        }
+
+        displayInfo() {
+            return `
+                <b>Brand:</b> ${this.brand}<br/>
+                <b>Speed:</b> ${this.speed} km/h
+            `;
+        }
+    }
+
+    // Derived Class
+    
+    class Car extends Vehicle {
+
+        constructor(brand, speed, fuelType) {
+            super(brand, speed);   // calling parent constructor
+            this.fuelType = fuelType;
+        }
+
+        showCarDetails() {
+            return `
+                ${this.displayInfo()}<br/>
+                <b>Fuel Type:</b> ${this.fuelType}
+            `;
+        }
+    }
+
+    function showVehicleDetails() {
+
+        const outputDiv = document.getElementById("output");
+
+        // Creating Car object
+        const car1 = new Car("Toyota", 180, "Petrol");
+
+        // Display details
+        outputDiv.innerHTML = `
+            <div class="box">
+                <h4>Car Details</h4>
+                ${car1.displayInfo()}<br/><br/>
+                ${car1.showCarDetails()}
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
