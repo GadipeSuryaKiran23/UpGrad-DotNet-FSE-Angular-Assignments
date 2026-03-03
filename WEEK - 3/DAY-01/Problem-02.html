@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal FAQ Section</title>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+        .question {
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .answer {
+            display: none;
+            margin-left: 20px;
+        }
+        .active {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>Personal FAQ</h3>
+    <hr>
+
+    <div class="faq">
+
+        <p class="question">1. What is your name?</p>
+        <p class="answer">My name is Surya Gadipe.</p>
+
+        <p class="question">2. What is your qualification?</p>
+        <p class="answer">I am a B.Tech graduate in Artificial Intelligence and Machine Learning.</p>
+
+        <p class="question">3. Which course are you currently learning?</p>
+        <p class="answer">I am learning Full Stack Development using .NET and Angular.</p>
+
+        <p class="question">4. What technologies are you learning now?</p>
+        <p class="answer">I am currently learning HTML, CSS, JavaScript, jQuery, and Angular.</p>
+
+        <p class="question">5. What is jQuery?</p>
+        <p class="answer">jQuery is a JavaScript library that simplifies DOM manipulation.</p>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".question").click(function () {
+
+                $(this).next(".answer").slideToggle();
+
+               
+                $(this).toggleClass("active");
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
