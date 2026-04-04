@@ -1,0 +1,29 @@
+<form method="post" action="/product/add">
+    Name: <input type="text" name="name" /><br />
+    Price: <input type="number" name="price" /><br />
+    Quantity: <input type="number" name="quantity" /><br />
+
+    <button type="submit">Add Product</button>
+</form>
+
+<hr />
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+
+    @if (ViewBag.Products != null)
+    {
+        foreach (var item in ViewBag.Products)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+    }
+</table>
